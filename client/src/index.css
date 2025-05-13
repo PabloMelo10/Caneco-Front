@@ -13,43 +13,49 @@
   --card-foreground: 20 14.3% 4.1%;
   --border: 20 5.9% 90%;
   --input: 20 5.9% 90%;
-  --primary: 207 90% 54%;
-  --primary-foreground: 211 100% 99%;
-  --secondary: 60 4.8% 95.9%;
-  --secondary-foreground: 24 9.8% 10%;
-  --accent: 60 4.8% 95.9%;
-  --accent-foreground: 24 9.8% 10%;
+  --primary: 202 100% 37%; /* CANECO Azul escuro #0075BA */
+  --primary-light: 202 100% 50%; /* CANECO Azul claro #00A0FB */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 219 34% 95%; /* Cinza muito claro para backgrounds */
+  --secondary-foreground: 217 19% 27%; /* Cinza escuro para texto */
+  --accent: 209 100% 59%; /* Azul médio #2B86F9 */
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 60 9.1% 97.8%;
-  --ring: 20 14.3% 4.1%;
+  --success: 142 71% 45%; /* Verde #24C661 */
+  --warning: 34 100% 50%; /* Laranja #FF9500 */
+  --ring: 201 100% 37%;
   --radius: 0.5rem;
-  --chart-1: 207 90% 54%;
-  --chart-2: 210 100% 30%;
+  --chart-1: 202 100% 37%;
+  --chart-2: 202 100% 50%;
   --chart-3: 180 100% 35%;
   --chart-4: 0 84.2% 60.2%;
   --chart-5: 45 93% 47%;
 }
 
 .dark {
-  --background: 240 10% 3.9%;
+  --background: 217 19% 19%; /* #22262F - escuro */
   --foreground: 0 0% 98%;
   --muted: 240 3.7% 15.9%;
   --muted-foreground: 240 5% 64.9%;
-  --popover: 240 10% 3.9%;
+  --popover: 217 19% 22%;
   --popover-foreground: 0 0% 98%;
-  --card: 240 10% 3.9%;
+  --card: 217 19% 24%;
   --card-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --primary: 207 90% 54%;
-  --primary-foreground: 211 100% 99%;
-  --secondary: 240 3.7% 15.9%;
+  --border: 217 19% 27%;
+  --input: 217 19% 27%;
+  --primary: 202 100% 37%; /* CANECO Azul escuro #0075BA */
+  --primary-light: 202 100% 50%; /* CANECO Azul claro #00A0FB */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 217 19% 27%;
   --secondary-foreground: 0 0% 98%;
-  --accent: 240 3.7% 15.9%;
-  --accent-foreground: 0 0% 98%;
+  --accent: 209 100% 59%; /* Azul médio #2B86F9 */
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-  --ring: 240 4.9% 83.9%;
+  --success: 142 71% 45%; /* Verde #24C661 */
+  --warning: 34 100% 50%; /* Laranja #FF9500 */
+  --ring: 0 0% 83.9%;
   --radius: 0.5rem;
 }
 
@@ -65,14 +71,38 @@
 
 @layer components {
   .menu-card {
-    @apply bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden cursor-pointer;
+    @apply bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden cursor-pointer hover:scale-105;
   }
   
   .category-card {
-    @apply bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden cursor-pointer;
+    @apply bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden cursor-pointer hover:bg-secondary;
   }
   
   .product-card {
-    @apply bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden;
+    @apply bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden hover:ring-2 hover:ring-primary/30;
+  }
+
+  .caneco-gradient {
+    @apply bg-gradient-to-r from-primary to-accent text-white;
+  }
+
+  .btn-primary {
+    @apply bg-primary hover:bg-accent text-white font-medium py-3 px-4 rounded-md transition-colors duration-300 flex items-center justify-center;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary hover:bg-secondary/80 text-secondary-foreground font-medium py-3 px-4 rounded-md transition-colors duration-300 flex items-center justify-center;
+  }
+
+  .btn-success {
+    @apply bg-success hover:bg-success/90 text-white font-medium py-3 px-4 rounded-md transition-colors duration-300 flex items-center justify-center;
+  }
+
+  .btn-destructive {
+    @apply bg-destructive hover:bg-destructive/90 text-white font-medium py-3 px-4 rounded-md transition-colors duration-300 flex items-center justify-center;
+  }
+
+  .app-title {
+    @apply font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent;
   }
 }

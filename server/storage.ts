@@ -84,8 +84,8 @@ export class MemStorage implements IStorage {
 
   private seedData() {
     // Seed users
-    this.createUser({ username: "admin", password: "password", name: "Administrator", isAdmin: true });
-    this.createUser({ username: "operator", password: "password", name: "João Operator", isAdmin: false });
+    this.createUser({ username: "admin", password: "password", name: "Administrador", isAdmin: true });
+    this.createUser({ username: "vendedor", password: "123456", name: "João Vendedor", isAdmin: false });
     
     // Seed categories
     const beverages = this.createCategory({ name: "Bebidas", icon: "local_bar" });
@@ -93,8 +93,9 @@ export class MemStorage implements IStorage {
     const cleaning = this.createCategory({ name: "Limpeza", icon: "cleaning_services" });
     const food = this.createCategory({ name: "Alimentos", icon: "restaurant" });
     const misc = this.createCategory({ name: "Diversos", icon: "category" });
+    const bakery = this.createCategory({ name: "Padaria", icon: "bakery_dining" });
     
-    // Seed products
+    // Bebidas
     this.createProduct({
       name: "Água Mineral 500ml",
       description: "Água mineral sem gás 500ml",
@@ -131,7 +132,25 @@ export class MemStorage implements IStorage {
       inStock: true
     });
     
-    // Add produce products
+    this.createProduct({
+      name: "Cerveja Lager 350ml",
+      description: "Cerveja pilsen em lata",
+      price: 3.99,
+      imageUrl: "https://images.unsplash.com/photo-1566633806327-68e152aaf26d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: beverages.id,
+      inStock: true
+    });
+    
+    this.createProduct({
+      name: "Vinho Tinto 750ml",
+      description: "Vinho tinto seco nacional",
+      price: 29.90,
+      imageUrl: "https://images.unsplash.com/photo-1553361371-9513f3251822?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: beverages.id,
+      inStock: true
+    });
+    
+    // Hortifruti
     this.createProduct({
       name: "Maçã Fuji kg",
       description: "Maçã Fuji fresca por quilo",
@@ -150,7 +169,34 @@ export class MemStorage implements IStorage {
       inStock: true
     });
     
-    // Add cleaning products
+    this.createProduct({
+      name: "Tomate kg",
+      description: "Tomate fresco por quilo",
+      price: 8.50,
+      imageUrl: "https://images.unsplash.com/photo-1607305387299-a3d9611cd469?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: produce.id,
+      inStock: true
+    });
+    
+    this.createProduct({
+      name: "Alface Crespa Unidade",
+      description: "Alface crespa fresca",
+      price: 3.49,
+      imageUrl: "https://images.unsplash.com/photo-1621458452298-0ada22833210?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: produce.id,
+      inStock: true
+    });
+    
+    this.createProduct({
+      name: "Cenoura kg",
+      description: "Cenoura fresca por quilo",
+      price: 4.99,
+      imageUrl: "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: produce.id,
+      inStock: true
+    });
+    
+    // Limpeza
     this.createProduct({
       name: "Detergente Líquido 500ml",
       description: "Detergente líquido para louças",
@@ -160,7 +206,34 @@ export class MemStorage implements IStorage {
       inStock: true
     });
     
-    // Add food products
+    this.createProduct({
+      name: "Sabão em Pó 1kg",
+      description: "Sabão em pó para lavagem de roupas",
+      price: 12.90,
+      imageUrl: "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: cleaning.id,
+      inStock: true
+    });
+    
+    this.createProduct({
+      name: "Desinfetante 2L",
+      description: "Desinfetante para uso geral",
+      price: 8.99,
+      imageUrl: "https://images.unsplash.com/photo-1605713673658-098957694a88?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: cleaning.id,
+      inStock: true
+    });
+    
+    this.createProduct({
+      name: "Esponja Multiuso 3 unid",
+      description: "Pacote com 3 esponjas para limpeza geral",
+      price: 4.50,
+      imageUrl: "https://images.unsplash.com/photo-1622560480654-d96214fdc887?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: cleaning.id,
+      inStock: true
+    });
+    
+    // Alimentos
     this.createProduct({
       name: "Arroz Integral 1kg",
       description: "Arroz integral tipo 1",
@@ -179,12 +252,85 @@ export class MemStorage implements IStorage {
       inStock: true
     });
     
-    // Add misc products
+    this.createProduct({
+      name: "Macarrão Espaguete 500g",
+      description: "Macarrão espaguete tradicional",
+      price: 4.75,
+      imageUrl: "https://images.unsplash.com/photo-1551462147-ff29053bfc14?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: food.id,
+      inStock: true
+    });
+    
+    this.createProduct({
+      name: "Molho de Tomate 340g",
+      description: "Molho de tomate tradicional",
+      price: 3.99,
+      imageUrl: "https://images.unsplash.com/photo-1608508644127-ba99d7732fee?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: food.id,
+      inStock: true
+    });
+    
+    this.createProduct({
+      name: "Azeite Extra Virgem 500ml",
+      description: "Azeite de oliva extra virgem importado",
+      price: 29.90,
+      imageUrl: "https://images.unsplash.com/photo-1565636291290-4810fe964a01?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: food.id,
+      inStock: true
+    });
+    
+    // Padaria
+    this.createProduct({
+      name: "Pão Francês 1kg",
+      description: "Pão francês fresco do dia",
+      price: 12.99,
+      imageUrl: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: bakery.id,
+      inStock: true
+    });
+    
+    this.createProduct({
+      name: "Bolo de Chocolate Fatia",
+      description: "Fatia de bolo de chocolate caseiro",
+      price: 6.50,
+      imageUrl: "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: bakery.id,
+      inStock: true
+    });
+    
+    this.createProduct({
+      name: "Pão de Queijo 6 unid",
+      description: "Pão de queijo mineiro tradicional",
+      price: 8.75,
+      imageUrl: "https://images.unsplash.com/photo-1598143379732-a5dc436c4fdf?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: bakery.id,
+      inStock: true
+    });
+    
+    // Diversos
     this.createProduct({
       name: "Pilhas AA (4 unidades)",
       description: "Pacote com 4 pilhas alcalinas AA",
       price: 12.90,
       imageUrl: "https://images.unsplash.com/photo-1626420925443-c6845a6a3814?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: misc.id,
+      inStock: true
+    });
+    
+    this.createProduct({
+      name: "Papel Alumínio 30m",
+      description: "Rolo de papel alumínio 30 metros",
+      price: 7.99,
+      imageUrl: "https://images.unsplash.com/photo-1620039188898-f733209ea8e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: misc.id,
+      inStock: true
+    });
+    
+    this.createProduct({
+      name: "Filtro de Café 103 (30 unid)",
+      description: "Caixa com 30 filtros de papel para café",
+      price: 5.49,
+      imageUrl: "https://images.unsplash.com/photo-1572119951839-327c386b56ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
       categoryId: misc.id,
       inStock: true
     });
