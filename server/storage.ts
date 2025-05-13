@@ -307,6 +307,24 @@ export class MemStorage implements IStorage {
       inStock: true
     });
     
+    this.createProduct({
+      name: "Sonho Recheado",
+      description: "Sonho recheado com creme",
+      price: 5.99,
+      imageUrl: "https://images.unsplash.com/photo-1586985288123-2495f577c250?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: bakery.id,
+      inStock: true
+    });
+    
+    this.createProduct({
+      name: "Croissant",
+      description: "Croissant francês folhado",
+      price: 6.49,
+      imageUrl: "https://images.unsplash.com/photo-1623334044303-241021148842?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: bakery.id,
+      inStock: true
+    });
+    
     // Diversos
     this.createProduct({
       name: "Pilhas AA (4 unidades)",
@@ -331,6 +349,33 @@ export class MemStorage implements IStorage {
       description: "Caixa com 30 filtros de papel para café",
       price: 5.49,
       imageUrl: "https://images.unsplash.com/photo-1572119951839-327c386b56ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: misc.id,
+      inStock: true
+    });
+    
+    this.createProduct({
+      name: "Carregador Portátil USB",
+      description: "Carregador de celular com 2 entradas USB",
+      price: 24.90,
+      imageUrl: "https://images.unsplash.com/photo-1583863788534-eebd9306f204?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: misc.id,
+      inStock: true
+    });
+    
+    this.createProduct({
+      name: "Caderno Universitário 100 fls",
+      description: "Caderno com espiral e capa dura",
+      price: 19.90,
+      imageUrl: "https://images.unsplash.com/photo-1582078892174-dc3e9214e122?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      categoryId: misc.id,
+      inStock: true
+    });
+    
+    this.createProduct({
+      name: "Guarda-Chuva Dobrável",
+      description: "Guarda-chuva compacto e automático",
+      price: 29.99,
+      imageUrl: "https://images.unsplash.com/photo-1518627675136-e9a92cf987f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
       categoryId: misc.id,
       inStock: true
     });
