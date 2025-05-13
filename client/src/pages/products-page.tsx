@@ -37,7 +37,8 @@ export default function ProductsPage() {
     isLoading: isProductsLoading, 
     error: productsError 
   } = useQuery<Product[]>({
-    queryKey: [`/api/products?categoryId=${categoryId}`],
+    queryKey: ['/api/products', { categoryId }],
+    queryFn: () => fetch(`/api/products?categoryId=${categoryId}`).then(res => res.json())
   });
 
   if (!user) return null;

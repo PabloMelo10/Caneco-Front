@@ -89,7 +89,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       if (req.query.categoryId) {
         const categoryId = parseInt(req.query.categoryId as string);
+        console.log("Fetching products for category:", categoryId);
         products = await storage.getProductsByCategory(categoryId);
+        console.log("Found products:", products.length);
       } else {
         products = await storage.getProducts();
       }
