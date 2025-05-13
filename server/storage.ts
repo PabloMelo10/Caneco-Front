@@ -88,12 +88,12 @@ export class MemStorage implements IStorage {
     this.createUser({ username: "vendedor", password: "123456", name: "João Vendedor", isAdmin: false });
     
     // Seed categories
-    const beverages = this.createCategory({ name: "Bebidas", icon: "local_bar" });
-    const produce = this.createCategory({ name: "Hortifruti", icon: "eco" });
-    const cleaning = this.createCategory({ name: "Limpeza", icon: "cleaning_services" });
-    const food = this.createCategory({ name: "Alimentos", icon: "restaurant" });
-    const misc = this.createCategory({ name: "Diversos", icon: "category" });
-    const bakery = this.createCategory({ name: "Padaria", icon: "bakery_dining" });
+    const beverages = this.createCategory({ name: "Bebidas", icon: "liquor" });
+    const produce = this.createCategory({ name: "Hortifruti", icon: "nutrition" });
+    const cleaning = this.createCategory({ name: "Limpeza", icon: "sanitizer" });
+    const food = this.createCategory({ name: "Alimentos", icon: "lunch_dining" });
+    const misc = this.createCategory({ name: "Diversos", icon: "shopping_bag" });
+    const bakery = this.createCategory({ name: "Padaria", icon: "breakfast_dining" });
     
     // Bebidas
     this.createProduct({
@@ -500,6 +500,7 @@ export class MemStorage implements IStorage {
     const id = this.currentCategoryId++;
     const newCategory: Category = { ...category, id };
     this.categories.set(id, newCategory);
+    console.log(`Categoria criada: ${newCategory.name}, ID: ${id}`);
     return newCategory;
   }
   
@@ -520,8 +521,17 @@ export class MemStorage implements IStorage {
   
   async createProduct(product: InsertProduct): Promise<Product> {
     const id = this.currentProductId++;
-    const newProduct: Product = { ...product, id };
+    const price = typeof product.price === 'number' ? product.price.toString() : product.price;
+    const newProduct: Product = { 
+      ...product, 
+      id,
+      price,
+      description: product.description || null,
+      imageUrl: product.imageUrl || null,
+      inStock: product.inStock === undefined ? true : product.inStock
+    };
     this.products.set(id, newProduct);
+    console.log(`Produto criado: ${newProduct.name}, categoria: ${newProduct.categoryId}`);
     return newProduct;
   }
   

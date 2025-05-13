@@ -37,7 +37,7 @@ export default function CategoriesPage() {
       aria-label="Ver carrinho"
       title="Ver carrinho"
     >
-      <span className="material-icons text-2xl">shopping_cart</span>
+      <span className="material-symbols-outlined text-2xl">shopping_cart</span>
       {cartCount > 0 && (
         <span className="absolute -top-1 -right-1 bg-destructive text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
           {cartCount}
@@ -77,7 +77,7 @@ export default function CategoriesPage() {
                 onClick={() => handleCategoryClick(category.id)}
               >
                 <div className="caneco-gradient p-6 flex justify-center rounded-t-xl">
-                  <span className="material-icons text-6xl">{category.icon}</span>
+                  <span className="material-symbols-outlined text-6xl">{category.icon}</span>
                 </div>
                 <div className="p-6">
                   <h3 className="font-bold text-xl text-center text-secondary-foreground">{category.name}</h3>
