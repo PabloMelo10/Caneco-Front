@@ -147,7 +147,7 @@ const FormMessage = React.forwardRef<
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, children, ...props }, ref) => {
   const { error, formMessageId } = useFormField()
-  const body = error ? String(error?.message ?? "") : children
+  const body = error ? String(error?.message ?? "Erro no campo").replace("String must contain at least", "O campo deve conter pelo menos").replace("Invalid email", "Email inválido").replace("Required", "Campo obrigatório") : children
 
   if (!body) {
     return null

@@ -37,8 +37,15 @@ export default function ProductsPage() {
     isLoading: isProductsLoading, 
     error: productsError 
   } = useQuery<Product[]>({
-    queryKey: ['/api/products', { categoryId }],
-    queryFn: () => fetch(`/api/products?categoryId=${categoryId}`).then(res => res.json())
+    queryKey: [`/api/products?categoryId=${categoryId}`],
+    queryFn: async () => {
+      console.log(`Fetching products for category ${categoryId}`);
+      const res = await fetch(`/api/products?categoryId=${categoryId}`);
+      if (!res.ok) {
+        throw new Error('Erro ao carregar produtos');
+      }
+      return res.json();
+    }
   });
 
   if (!user) return null;
