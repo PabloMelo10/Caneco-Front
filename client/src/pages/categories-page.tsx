@@ -33,12 +33,13 @@ export default function CategoriesPage() {
   const CartButton = () => (
     <button 
       onClick={() => setLocation("/checkout")}
-      className="relative"
+      className="relative bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
       aria-label="Ver carrinho"
+      title="Ver carrinho"
     >
       <span className="material-icons text-2xl">shopping_cart</span>
       {cartCount > 0 && (
-        <span className="absolute -top-2 -right-2 bg-destructive text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+        <span className="absolute -top-1 -right-1 bg-destructive text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
           {cartCount}
         </span>
       )}
@@ -46,15 +47,19 @@ export default function CategoriesPage() {
   );
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-secondary/30">
       <Header 
-        title="Categorias" 
+        title="Selecione a Categoria" 
         showBackButton 
         backPath="/menu" 
         actions={<CartButton />}
       />
       
       <main className="container mx-auto px-4 py-8">
+        <div className="mb-6 text-center">
+          <h2 className="text-xl font-medium text-secondary-foreground">Escolha uma categoria para continuar</h2>
+        </div>
+        
         {isLoading ? (
           <div className="flex justify-center items-center h-64">
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -71,11 +76,14 @@ export default function CategoriesPage() {
                 className="category-card"
                 onClick={() => handleCategoryClick(category.id)}
               >
-                <div className="bg-primary-light text-white p-6 flex justify-center">
+                <div className="caneco-gradient p-6 flex justify-center rounded-t-xl">
                   <span className="material-icons text-6xl">{category.icon}</span>
                 </div>
                 <div className="p-6">
-                  <h3 className="font-bold text-xl text-center text-neutral-dark">{category.name}</h3>
+                  <h3 className="font-bold text-xl text-center text-secondary-foreground">{category.name}</h3>
+                  <div className="flex justify-center mt-4">
+                    <span className="material-icons text-primary/70">arrow_forward</span>
+                  </div>
                 </div>
               </div>
             ))}

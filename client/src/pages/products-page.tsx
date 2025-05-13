@@ -61,12 +61,13 @@ export default function ProductsPage() {
   const CartButton = () => (
     <button 
       onClick={toggleCart}
-      className="relative"
+      className="relative bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
       aria-label="Ver carrinho"
+      title="Ver carrinho"
     >
       <span className="material-icons text-2xl">shopping_cart</span>
       {cartCount > 0 && (
-        <span className="absolute -top-2 -right-2 bg-destructive text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+        <span className="absolute -top-1 -right-1 bg-destructive text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
           {cartCount}
         </span>
       )}
@@ -74,7 +75,7 @@ export default function ProductsPage() {
   );
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-secondary/30">
       <Header 
         title={category?.name || "Produtos"} 
         showBackButton 
@@ -90,9 +91,9 @@ export default function ProductsPage() {
               placeholder="Buscar produtos..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-3 pl-12 border border-neutral-gray rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-4 py-3 pl-12 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <span className="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-gray">search</span>
+            <span className="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary-foreground/60">search</span>
           </div>
         </div>
 
@@ -104,28 +105,44 @@ export default function ProductsPage() {
           <div className="text-center text-destructive">
             Erro ao carregar produtos. Por favor, tente novamente.
           </div>
+        ) : filteredProducts?.length === 0 ? (
+          <div className="text-center py-10">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-secondary/20 rounded-full mb-4">
+              <span className="material-icons text-primary/70 text-3xl">search_off</span>
+            </div>
+            <h3 className="text-xl font-medium text-secondary-foreground mb-2">Nenhum produto encontrado</h3>
+            <p className="text-secondary-foreground/70">Tente buscar por outro termo</p>
+          </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProducts?.map((product) => (
               <div key={product.id} className="product-card">
                 {product.imageUrl && (
-                  <img 
-                    src={product.imageUrl} 
-                    alt={product.name} 
-                    className="w-full h-48 object-cover"
-                  />
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={product.imageUrl} 
+                      alt={product.name} 
+                      className="w-full h-full object-cover"
+                    />
+                    {product.inStock === false && (
+                      <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                        <span className="bg-destructive text-white px-3 py-1 rounded-md font-medium">Fora de estoque</span>
+                      </div>
+                    )}
+                  </div>
                 )}
                 <div className="p-4">
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-bold text-lg text-neutral-dark">{product.name}</h3>
+                    <h3 className="font-bold text-lg text-secondary-foreground">{product.name}</h3>
                     <span className="font-bold text-primary">{formatCurrency(Number(product.price))}</span>
                   </div>
                   {product.description && (
-                    <p className="text-neutral-gray text-sm mb-4">{product.description}</p>
+                    <p className="text-secondary-foreground/70 text-sm mb-4">{product.description}</p>
                   )}
                   <Button 
                     onClick={() => handleAddToCart(product)}
-                    className="w-full bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded-md transition duration-300 flex items-center justify-center"
+                    className="w-full btn-primary"
+                    disabled={product.inStock === false}
                   >
                     <span className="material-icons mr-2">add_shopping_cart</span>
                     Adicionar
@@ -140,23 +157,26 @@ export default function ProductsPage() {
       {/* Shopping Cart Drawer */}
       <div className={`fixed inset-y-0 right-0 w-full sm:w-96 bg-white shadow-xl transform ${isCartOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 z-50`}>
         <div className="flex flex-col h-full">
-          <div className="bg-primary text-white p-4 flex justify-between items-center">
+          <div className="caneco-gradient p-4 flex justify-between items-center">
             <h2 className="text-xl font-bold">Carrinho</h2>
-            <button onClick={toggleCart} className="text-white">
+            <button onClick={toggleCart} className="text-white bg-white/10 hover:bg-white/20 p-1 rounded-full">
               <span className="material-icons">close</span>
             </button>
           </div>
           
           <div className="flex-1 overflow-y-auto p-4">
             {cartItems.length === 0 ? (
-              <div className="text-center py-8 text-neutral-gray">
-                <span className="material-icons text-4xl mb-2">shopping_cart</span>
-                <p>Seu carrinho está vazio</p>
+              <div className="text-center py-8 text-secondary-foreground/70">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-secondary/20 rounded-full mb-4">
+                  <span className="material-icons text-primary/70 text-3xl">shopping_cart</span>
+                </div>
+                <p className="text-secondary-foreground">Seu carrinho está vazio</p>
+                <p className="text-sm text-secondary-foreground/70 mt-2">Adicione produtos para continuar</p>
               </div>
             ) : (
               <div className="space-y-4">
                 {cartItems.map((item) => (
-                  <div key={item.productId} className="flex items-center justify-between bg-neutral-light p-3 rounded-lg">
+                  <div key={item.productId} className="flex items-center justify-between bg-secondary/10 p-3 rounded-lg">
                     <div className="flex items-center space-x-3">
                       {item.imageUrl && (
                         <img 
@@ -166,20 +186,20 @@ export default function ProductsPage() {
                         />
                       )}
                       <div>
-                        <h4 className="font-medium text-neutral-dark">{item.name}</h4>
+                        <h4 className="font-medium text-secondary-foreground">{item.name}</h4>
                         <p className="text-primary font-medium">{formatCurrency(item.price)}</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-2">
                       <button 
-                        className="bg-neutral-medium hover:bg-neutral-gray text-neutral-dark rounded-full w-8 h-8 flex items-center justify-center"
+                        className="bg-secondary/20 hover:bg-secondary/30 text-secondary-foreground rounded-full w-8 h-8 flex items-center justify-center"
                         onClick={() => useCart().updateQuantity(item.productId, item.quantity - 1)}
                       >
                         <span className="material-icons text-sm">remove</span>
                       </button>
-                      <span className="text-neutral-dark font-medium w-6 text-center">{item.quantity}</span>
+                      <span className="text-secondary-foreground font-medium w-6 text-center">{item.quantity}</span>
                       <button 
-                        className="bg-neutral-medium hover:bg-neutral-gray text-neutral-dark rounded-full w-8 h-8 flex items-center justify-center"
+                        className="bg-secondary/20 hover:bg-secondary/30 text-secondary-foreground rounded-full w-8 h-8 flex items-center justify-center"
                         onClick={() => useCart().updateQuantity(item.productId, item.quantity + 1)}
                       >
                         <span className="material-icons text-sm">add</span>
@@ -197,13 +217,13 @@ export default function ProductsPage() {
             )}
           </div>
           
-          <div className="border-t border-neutral-medium p-4">
+          <div className="border-t border-secondary/20 p-4">
             <div className="flex justify-between items-center mb-4">
-              <span className="text-neutral-dark font-medium">Total:</span>
+              <span className="text-secondary-foreground font-medium">Total:</span>
               <span className="text-primary text-xl font-bold">{formatCurrency(useCart().cartTotal)}</span>
             </div>
             <Button 
-              className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-3 px-4 rounded-md transition duration-300 flex items-center justify-center"
+              className="w-full btn-primary"
               onClick={() => setLocation("/checkout")}
               disabled={cartItems.length === 0}
             >
