@@ -71,6 +71,7 @@ export default function LoginPage() {
                             {...field} 
                             className="w-full pl-10 pr-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                             placeholder="Digite seu nome de usuário"
+                            autoComplete="off"
                           />
                         </div>
                       </FormControl>
@@ -94,6 +95,7 @@ export default function LoginPage() {
                             type="password"
                             className="w-full pl-10 pr-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                             placeholder="Digite sua senha"
+                            autoComplete="off"
                           />
                         </div>
                       </FormControl>
@@ -113,7 +115,7 @@ export default function LoginPage() {
                     </>
                   ) : (
                     <>
-                      <span className="material-icons mr-2">login</span>
+                      <span className="material-icons mr-2">arrow_forward</span>
                       Entrar
                     </>
                   )}

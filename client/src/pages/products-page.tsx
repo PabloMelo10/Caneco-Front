@@ -15,7 +15,7 @@ export default function ProductsPage() {
   const { cartCount, cartItems, addToCart } = useCart();
   const [, setLocation] = useLocation();
   const params = useParams();
-  const categoryId = parseInt(params.categoryId);
+  const categoryId = params.categoryId ? parseInt(params.categoryId) : 0;
   const [searchQuery, setSearchQuery] = useState("");
   const [isCartOpen, setIsCartOpen] = useState(false);
   
