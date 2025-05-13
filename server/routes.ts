@@ -89,17 +89,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       if (req.query.categoryId) {
         const categoryId = parseInt(req.query.categoryId as string);
-        console.log("Fetching products for category:", categoryId);
+        console.log("[CANECO] Buscando produtos para categoria:", categoryId);
         products = await storage.getProductsByCategory(categoryId);
-        console.log("Found products:", products.length);
+        console.log("[CANECO] Produtos encontrados:", products.length);
+        console.log("[CANECO] Primeiro produto:", products.length > 0 ? products[0].name : "Nenhum");
       } else {
+        console.log("[CANECO] Buscando todos os produtos");
         products = await storage.getProducts();
+        console.log("[CANECO] Total de produtos:", products.length);
       }
       
       return res.status(200).json(products);
     } catch (error) {
-      console.error("Error fetching products:", error);
-      return res.status(500).json({ message: "Internal server error" });
+      console.error("[CANECO] Erro ao buscar produtos:", error);
+      return res.status(500).json({ message: "Erro interno do servidor" });
     }
   });
   
