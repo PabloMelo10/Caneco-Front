@@ -70,7 +70,8 @@ export default function LoginPage() {
                           <Input 
                             {...field} 
                             className="w-full pl-10 pr-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                            placeholder="Digite seu nome de usuário"
+                            placeholder=""
+                            aria-label="Digite seu nome de usuário"
                             autoComplete="off"
                           />
                         </div>
@@ -94,7 +95,8 @@ export default function LoginPage() {
                             {...field} 
                             type="password"
                             className="w-full pl-10 pr-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                            placeholder="Digite sua senha"
+                            placeholder=""
+                            aria-label="Digite sua senha"
                             autoComplete="off"
                           />
                         </div>
