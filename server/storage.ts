@@ -82,18 +82,24 @@ export class MemStorage implements IStorage {
     this.seedData();
   }
 
-  private seedData() {
+  private async seedData() {
     // Seed users
     this.createUser({ username: "admin", password: "password", name: "Administrador", isAdmin: true });
     this.createUser({ username: "vendedor", password: "123456", name: "João Vendedor", isAdmin: false });
     
     // Seed categories
-    const beverages = this.createCategory({ name: "Bebidas", icon: "liquor" });
-    const produce = this.createCategory({ name: "Hortifruti", icon: "nutrition" });
-    const cleaning = this.createCategory({ name: "Limpeza", icon: "sanitizer" });
-    const food = this.createCategory({ name: "Alimentos", icon: "lunch_dining" });
-    const misc = this.createCategory({ name: "Diversos", icon: "shopping_bag" });
-    const bakery = this.createCategory({ name: "Padaria", icon: "breakfast_dining" });
+    // Criando categorias e aguardando resolução das Promises
+    const beveragesPromise = this.createCategory({ name: "Bebidas", icon: "liquor" });
+    const producePromise = this.createCategory({ name: "Hortifruti", icon: "nutrition" });
+    const cleaningPromise = this.createCategory({ name: "Limpeza", icon: "sanitizer" });
+    const foodPromise = this.createCategory({ name: "Alimentos", icon: "lunch_dining" });
+    const miscPromise = this.createCategory({ name: "Diversos", icon: "shopping_bag" });
+    const bakeryPromise = this.createCategory({ name: "Padaria", icon: "breakfast_dining" });
+    
+    // Aguardando todas as categorias serem criadas
+    const [beverages, produce, cleaning, food, misc, bakery] = await Promise.all([
+      beveragesPromise, producePromise, cleaningPromise, foodPromise, miscPromise, bakeryPromise
+    ]);
     
     // Bebidas
     this.createProduct({

@@ -21,7 +21,7 @@ export default function MainMenu() {
       id: "new-checkout",
       title: "Nova Venda",
       description: "Iniciar nova venda",
-      icon: "shopping_cart",
+      icon: "",
       path: "/categories",
       primary: true,
     },
@@ -29,21 +29,21 @@ export default function MainMenu() {
       id: "sales-history",
       title: "Histórico de Vendas",
       description: "Ver vendas anteriores",
-      icon: "receipt_long",
+      icon: "",
       path: "/sales-history",
     },
     {
       id: "add-balance",
       title: "Adicionar Saldo",
       description: "Adicionar fundos ao caixa",
-      icon: "account_balance_wallet",
+      icon: "",
       path: "/add-balance",
     },
     {
       id: "close-register",
       title: "Fechar Caixa",
       description: "Encerrar operações do dia",
-      icon: "point_of_sale",
+      icon: "",
       path: "/close-register",
     },
   ];
@@ -63,14 +63,14 @@ export default function MainMenu() {
           <div className="menu-card caneco-gradient">
             <div className="flex items-center p-8">
               <div className="bg-white/20 rounded-full p-4 mr-6">
-                <span className="material-icons text-5xl">shopping_cart</span>
+                <span className="material-icons text-5xl">Carrinho de Compras</span>
               </div>
               <div>
                 <h2 className="font-bold text-2xl mb-2">Nova Venda</h2>
                 <p className="opacity-90">Iniciar um novo atendimento no caixa</p>
               </div>
               <div className="ml-auto">
-                <span className="material-icons text-4xl">arrow_forward</span>
+                <span className="material-icons text-4xl"></span>
               </div>
             </div>
           </div>

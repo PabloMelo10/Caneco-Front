@@ -24,6 +24,13 @@ export default function CategoriesPage() {
     queryKey: ["/api/categories"],
   });
 
+const categoryTranslations: Record<string, string> = {
+  drinks: "Bebidas",
+  desserts: "Sobremesas",
+  meals: "Refeições",
+  snacks: "Lanches",
+  others: "Outros"
+};
   if (!user) return null;
 
   const handleCategoryClick = (categoryId: number) => {
@@ -37,7 +44,7 @@ export default function CategoriesPage() {
       aria-label="Ver carrinho"
       title="Ver carrinho"
     >
-      <span className="material-symbols-outlined text-2xl">shopping_cart</span>
+      <span className="material-symbols-outlined text-2xl">Carrinho de Compras</span>
       {cartCount > 0 && (
         <span className="absolute -top-1 -right-1 bg-destructive text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
           {cartCount}
@@ -80,9 +87,11 @@ export default function CategoriesPage() {
                   <span className="material-symbols-outlined text-6xl">{category.icon}</span>
                 </div>
                 <div className="p-6">
-                  <h3 className="font-bold text-xl text-center text-secondary-foreground">{category.name}</h3>
+                  <h3 className="font-bold text-xl text-center text-secondary-foreground">
+  {categoryTranslations[category.name] ?? category.name}
+</h3>
                   <div className="flex justify-center mt-4">
-                    <span className="material-icons text-primary/70">arrow_forward</span>
+                    <span className="material-icons text-primary/70"></span>
                   </div>
                 </div>
               </div>

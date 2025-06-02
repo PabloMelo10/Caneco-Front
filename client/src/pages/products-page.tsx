@@ -73,7 +73,7 @@ export default function ProductsPage() {
       aria-label="Ver carrinho"
       title="Ver carrinho"
     >
-      <span className="material-icons text-2xl">shopping_cart</span>
+      <span className="material-icons text-2xl">Carrinho de Compras</span>
       {cartCount > 0 && (
         <span className="absolute -top-1 -right-1 bg-destructive text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
           {cartCount}
@@ -101,7 +101,7 @@ export default function ProductsPage() {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full px-4 py-3 pl-12 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <span className="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary-foreground/60">search</span>
+            <span className="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary-foreground/60">Pesquisar</span>
           </div>
         </div>
 
@@ -116,7 +116,7 @@ export default function ProductsPage() {
         ) : filteredProducts?.length === 0 ? (
           <div className="text-center py-10">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-secondary/20 rounded-full mb-4">
-              <span className="material-icons text-primary/70 text-3xl">search_off</span>
+              <span className="material-icons text-primary/70 text-3xl">Busca não encontrada</span>
             </div>
             <h3 className="text-xl font-medium text-secondary-foreground mb-2">Nenhum produto encontrado</h3>
             <p className="text-secondary-foreground/70">Tente buscar por outro termo</p>
@@ -152,7 +152,7 @@ export default function ProductsPage() {
                     className="w-full btn-primary"
                     disabled={product.inStock === false}
                   >
-                    <span className="material-icons mr-2">add_shopping_cart</span>
+                    <span className="material-icons mr-2">Adicionar ao Carrinho</span>
                     Adicionar
                   </Button>
                 </div>
@@ -176,7 +176,7 @@ export default function ProductsPage() {
             {cartItems.length === 0 ? (
               <div className="text-center py-8 text-secondary-foreground/70">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-secondary/20 rounded-full mb-4">
-                  <span className="material-icons text-primary/70 text-3xl">shopping_cart</span>
+                  <span className="material-icons text-primary/70 text-3xl">Carrinho de Compras</span>
                 </div>
                 <p className="text-secondary-foreground">Seu carrinho está vazio</p>
                 <p className="text-sm text-secondary-foreground/70 mt-2">Adicione produtos para continuar</p>
@@ -235,7 +235,7 @@ export default function ProductsPage() {
               onClick={() => setLocation("/checkout")}
               disabled={cartItems.length === 0}
             >
-              <span className="material-icons mr-2">payment</span>
+              <span className="material-icons mr-2">pagamento</span>
               Finalizar Compra
             </Button>
           </div>

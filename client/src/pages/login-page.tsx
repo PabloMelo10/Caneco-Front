@@ -65,7 +65,7 @@ export default function LoginPage() {
                       <FormControl>
                         <div className="relative">
                           <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-gray">
-                            <span className="material-icons text-primary/70">person</span>
+                            <span className="material-icons text-primary/70"></span>
                           </span>
                           <Input 
                             {...field} 
@@ -89,7 +89,7 @@ export default function LoginPage() {
                       <FormControl>
                         <div className="relative">
                           <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-gray">
-                            <span className="material-icons text-primary/70">lock</span>
+                            <span className="material-icons text-primary/70"></span>
                           </span>
                           <Input 
                             {...field} 
@@ -117,7 +117,7 @@ export default function LoginPage() {
                     </>
                   ) : (
                     <>
-                      <span className="material-icons mr-2">arrow_forward</span>
+                      <span className="material-icons mr-2"></span>
                       Entrar
                     </>
                   )}
