@@ -17,7 +17,7 @@ const loginSchema = z.object({
 export default function LoginPage() {
   const { loginMutation, user } = useAuth();
   const [, setLocation] = useLocation();
-  
+
   // Redirect to menu if already logged in
   useEffect(() => {
     if (user) {
@@ -67,8 +67,8 @@ export default function LoginPage() {
                           <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-gray">
                             <span className="material-icons text-primary/70"></span>
                           </span>
-                          <Input 
-                            {...field} 
+                          <Input
+                            {...field}
                             className="w-full pl-10 pr-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                             placeholder=""
                             aria-label="Digite seu nome de usuário"
@@ -91,8 +91,8 @@ export default function LoginPage() {
                           <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-gray">
                             <span className="material-icons text-primary/70"></span>
                           </span>
-                          <Input 
-                            {...field} 
+                          <Input
+                            {...field}
                             type="password"
                             className="w-full pl-10 pr-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                             placeholder=""
@@ -105,8 +105,8 @@ export default function LoginPage() {
                     </FormItem>
                   )}
                 />
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   disabled={loginMutation.isPending}
                   className="w-full btn-primary"
                 >

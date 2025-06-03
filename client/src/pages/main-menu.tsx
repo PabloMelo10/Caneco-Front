@@ -6,7 +6,7 @@ import { Header } from "@/components/layout/header";
 export default function MainMenu() {
   const { user } = useAuth();
   const [, setLocation] = useLocation();
-  
+
   // Redirect to login if not authenticated
   useEffect(() => {
     if (!user) {
@@ -51,35 +51,25 @@ export default function MainMenu() {
   return (
     <div className="min-h-screen flex flex-col bg-secondary/30">
       <Header title="CANECO - Sistema PDV" />
-      
-      <main className="container mx-auto px-4 py-8 flex-1">
+
+      <main className="container mx-auto w-4/5 px-4 py-8 flex-1">
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold app-title mb-2">Bem-vindo, {user.name}!</h1>
-          <p className="text-secondary-foreground">O que você deseja fazer hoje?</p>
         </div>
-        
+
         {/* Principal card destacado */}
-        <div className="max-w-4xl mx-auto mb-8" onClick={() => setLocation("/categories")}>
-          <div className="menu-card caneco-gradient">
-            <div className="flex items-center p-8">
-              <div className="bg-white/20 rounded-full p-4 mr-6">
-                <span className="material-icons text-5xl">Carrinho de Compras</span>
-              </div>
-              <div>
-                <h2 className="font-bold text-2xl mb-2">Nova Venda</h2>
-                <p className="opacity-90">Iniciar um novo atendimento no caixa</p>
-              </div>
-              <div className="ml-auto">
-                <span className="material-icons text-4xl"></span>
-              </div>
+        <div className="w-full mx-auto mb-8" onClick={() => setLocation("/categories")}>
+          <div className="menu-card w-full caneco-gradient">
+            <div className="flex items-center justify-center p-8">
+              <h1 className="font-bold text-2xl mb-2">Novo Caixa</h1>
             </div>
           </div>
         </div>
-        
+
         {/* Grid de outros cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {menuItems.filter(item => !item.primary).map((item) => (
-            <div 
+            <div
               key={item.id}
               className="menu-card"
               onClick={() => setLocation(item.path)}
@@ -97,7 +87,7 @@ export default function MainMenu() {
           {/* Card de administração - visível somente para admin */}
           {user.isAdmin && (
             <div className="menu-card bg-secondary/20 border border-primary/20"
-                 onClick={() => alert("Módulo de administração em desenvolvimento")}>
+              onClick={() => alert("Módulo de administração em desenvolvimento")}>
               <div className="p-6 flex flex-col items-center">
                 <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                   <span className="material-icons text-primary text-3xl">admin_panel_settings</span>
@@ -110,7 +100,7 @@ export default function MainMenu() {
         </div>
 
         {/* Resumo do caixa atual */}
-        <div className="mt-10 max-w-4xl mx-auto">
+        {/* <div className="mt-10 max-w-4xl mx-auto">
           <div className="bg-white rounded-xl shadow-md p-6">
             <h3 className="font-bold text-xl text-secondary-foreground mb-4">Resumo do Caixa Atual</h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -128,7 +118,7 @@ export default function MainMenu() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </main>
 
       <footer className="bg-white py-4 text-center text-sm text-secondary-foreground/70 border-t">
