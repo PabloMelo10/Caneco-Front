@@ -10,9 +10,10 @@ import { Loader2 } from "lucide-react";
 import { useEffect } from "react";
 
 const loginSchema = z.object({
-  username: z.string().min(1, "Nome do operador é obrigatório"),
+  cpf: z.string().min(11, "CPF é obrigatório"),
   password: z.string().min(1, "Senha é obrigatória"),
 });
+
 
 export default function LoginPage() {
   const { loginMutation, user } = useAuth();
@@ -28,7 +29,7 @@ export default function LoginPage() {
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      username: "",
+      cpf: "",
       password: "",
     },
   });
@@ -58,10 +59,10 @@ export default function LoginPage() {
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <FormField
                   control={form.control}
-                  name="username"
+                  name="cpf"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-secondary-foreground font-medium">Nome do Operador</FormLabel>
+                      <FormLabel className="text-secondary-foreground font-medium">CPF do Operador</FormLabel>
                       <FormControl>
                         <div className="relative">
                           <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-gray">
@@ -70,8 +71,8 @@ export default function LoginPage() {
                           <Input
                             {...field}
                             className="w-full pl-10 pr-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                            placeholder=""
-                            aria-label="Digite seu nome de usuário"
+                            placeholder="Digite o CPF"
+                            aria-label="Digite seu CPF"
                             autoComplete="off"
                           />
                         </div>

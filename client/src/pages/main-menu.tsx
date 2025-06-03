@@ -52,13 +52,13 @@ export default function MainMenu() {
     <div className="min-h-screen flex flex-col bg-secondary/30">
       <Header title="CANECO - Sistema PDV" />
 
-      <main className="container mx-auto w-4/5 px-4 py-8 flex-1">
+      <main className="container mx-auto w-3/5 px-4 py-8 flex-1">
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold app-title mb-2">Bem-vindo, {user.name}!</h1>
         </div>
 
         {/* Principal card destacado */}
-        <div className="w-full mx-auto mb-8" onClick={() => setLocation("/categories")}>
+        <div className="w-full mx-auto w-3/5 mb-8" onClick={() => setLocation("/categories")}>
           <div className="menu-card w-full caneco-gradient">
             <div className="flex items-center justify-center p-8">
               <h1 className="font-bold text-2xl mb-2">Novo Caixa</h1>
@@ -67,7 +67,7 @@ export default function MainMenu() {
         </div>
 
         {/* Grid de outros cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto">
           {menuItems.filter(item => !item.primary).map((item) => (
             <div
               key={item.id}
@@ -84,8 +84,8 @@ export default function MainMenu() {
             </div>
           ))}
 
-          {/* Card de administração - visível somente para admin */}
-          {user.isAdmin && (
+          {/* Card de administração - visível somente para admin*/}
+          {/*{user.isAdmin && (
             <div className="menu-card bg-secondary/20 border border-primary/20"
               onClick={() => alert("Módulo de administração em desenvolvimento")}>
               <div className="p-6 flex flex-col items-center">
@@ -96,7 +96,7 @@ export default function MainMenu() {
                 <p className="text-secondary-foreground/70 text-center text-sm">Gerenciar produtos e usuários</p>
               </div>
             </div>
-          )}
+          )} */}
         </div>
 
         {/* Resumo do caixa atual */}

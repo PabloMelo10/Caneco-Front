@@ -83,6 +83,10 @@
 }
 
 @layer components {
+  .caneco-main {
+    background-image: url();
+  }
+
   .menu-card {
     @apply bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden cursor-pointer hover:scale-105;
   }
