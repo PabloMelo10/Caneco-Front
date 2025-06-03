@@ -1,5 +1,5 @@
-import { 
-  User, InsertUser, 
+import {
+  User, InsertUser,
   Product, InsertProduct,
   Category, InsertCategory,
   Sale, InsertSale,
@@ -14,29 +14,29 @@ export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
-  
+
   // Category operations
   getCategories(): Promise<Category[]>;
   getCategory(id: number): Promise<Category | undefined>;
   createCategory(category: InsertCategory): Promise<Category>;
-  
+
   // Product operations
   getProducts(): Promise<Product[]>;
   getProductsByCategory(categoryId: number): Promise<Product[]>;
   getProduct(id: number): Promise<Product | undefined>;
   createProduct(product: InsertProduct): Promise<Product>;
-  
+
   // Sale operations
   getSales(): Promise<Sale[]>;
   getSalesByDateRange(startDate: Date, endDate: Date): Promise<Sale[]>;
   getSale(id: number): Promise<Sale | undefined>;
   createSale(sale: InsertSale): Promise<Sale>;
-  
+
   // Cash transaction operations
   getCashTransactions(): Promise<CashTransaction[]>;
   getCashTransactionsByDateRange(startDate: Date, endDate: Date): Promise<CashTransaction[]>;
   createCashTransaction(transaction: InsertCashTransaction): Promise<CashTransaction>;
-  
+
   // Daily register operations
   getDailyRegisters(): Promise<DailyRegister[]>;
   getDailyRegistersByDateRange(startDate: Date, endDate: Date): Promise<DailyRegister[]>;
@@ -55,7 +55,7 @@ export class MemStorage implements IStorage {
   private sales: Map<number, Sale>;
   private cashTransactions: Map<number, CashTransaction>;
   private dailyRegisters: Map<number, DailyRegister>;
-  
+
   private currentUserId: number;
   private currentCategoryId: number;
   private currentProductId: number;
@@ -70,14 +70,14 @@ export class MemStorage implements IStorage {
     this.sales = new Map();
     this.cashTransactions = new Map();
     this.dailyRegisters = new Map();
-    
+
     this.currentUserId = 1;
     this.currentCategoryId = 1;
     this.currentProductId = 1;
     this.currentSaleId = 1;
     this.currentCashTransactionId = 1;
     this.currentDailyRegisterId = 1;
-    
+
     // Seed data
     this.seedData();
   }
@@ -86,7 +86,7 @@ export class MemStorage implements IStorage {
     // Seed users
     this.createUser({ username: "admin", password: "password", name: "Administrador", isAdmin: true });
     this.createUser({ username: "vendedor", password: "123456", name: "João Vendedor", isAdmin: false });
-    
+
     // Seed categories
     // Criando categorias e aguardando resolução das Promises
     const beveragesPromise = this.createCategory({ name: "Bebidas", icon: "liquor" });
@@ -95,12 +95,12 @@ export class MemStorage implements IStorage {
     const foodPromise = this.createCategory({ name: "Alimentos", icon: "lunch_dining" });
     const miscPromise = this.createCategory({ name: "Diversos", icon: "shopping_bag" });
     const bakeryPromise = this.createCategory({ name: "Padaria", icon: "breakfast_dining" });
-    
+
     // Aguardando todas as categorias serem criadas
     const [beverages, produce, cleaning, food, misc, bakery] = await Promise.all([
       beveragesPromise, producePromise, cleaningPromise, foodPromise, miscPromise, bakeryPromise
     ]);
-    
+
     // Bebidas
     this.createProduct({
       name: "Água Mineral 500ml",
@@ -110,7 +110,7 @@ export class MemStorage implements IStorage {
       categoryId: beverages.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Refrigerante Cola 350ml",
       description: "Refrigerante sabor cola em lata",
@@ -119,7 +119,7 @@ export class MemStorage implements IStorage {
       categoryId: beverages.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Suco de Laranja 1L",
       description: "Suco de laranja natural 1 litro",
@@ -128,7 +128,7 @@ export class MemStorage implements IStorage {
       categoryId: beverages.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Energético 250ml",
       description: "Bebida energética em lata",
@@ -137,7 +137,7 @@ export class MemStorage implements IStorage {
       categoryId: beverages.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Cerveja Lager 350ml",
       description: "Cerveja pilsen em lata",
@@ -146,7 +146,7 @@ export class MemStorage implements IStorage {
       categoryId: beverages.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Vinho Tinto 750ml",
       description: "Vinho tinto seco nacional",
@@ -155,7 +155,7 @@ export class MemStorage implements IStorage {
       categoryId: beverages.id,
       inStock: true
     });
-    
+
     // Hortifruti
     this.createProduct({
       name: "Maçã Fuji kg",
@@ -165,7 +165,7 @@ export class MemStorage implements IStorage {
       categoryId: produce.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Banana Prata kg",
       description: "Banana Prata por quilo",
@@ -174,7 +174,7 @@ export class MemStorage implements IStorage {
       categoryId: produce.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Tomate kg",
       description: "Tomate fresco por quilo",
@@ -183,7 +183,7 @@ export class MemStorage implements IStorage {
       categoryId: produce.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Alface Crespa Unidade",
       description: "Alface crespa fresca",
@@ -192,7 +192,7 @@ export class MemStorage implements IStorage {
       categoryId: produce.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Cenoura kg",
       description: "Cenoura fresca por quilo",
@@ -201,7 +201,7 @@ export class MemStorage implements IStorage {
       categoryId: produce.id,
       inStock: true
     });
-    
+
     // Limpeza
     this.createProduct({
       name: "Detergente Líquido 500ml",
@@ -211,7 +211,7 @@ export class MemStorage implements IStorage {
       categoryId: cleaning.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Sabão em Pó 1kg",
       description: "Sabão em pó para lavagem de roupas",
@@ -220,7 +220,7 @@ export class MemStorage implements IStorage {
       categoryId: cleaning.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Desinfetante 2L",
       description: "Desinfetante para uso geral",
@@ -229,7 +229,7 @@ export class MemStorage implements IStorage {
       categoryId: cleaning.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Esponja Multiuso 3 unid",
       description: "Pacote com 3 esponjas para limpeza geral",
@@ -238,7 +238,7 @@ export class MemStorage implements IStorage {
       categoryId: cleaning.id,
       inStock: true
     });
-    
+
     // Alimentos
     this.createProduct({
       name: "Arroz Integral 1kg",
@@ -248,7 +248,7 @@ export class MemStorage implements IStorage {
       categoryId: food.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Feijão Preto 1kg",
       description: "Feijão preto tipo 1",
@@ -257,7 +257,7 @@ export class MemStorage implements IStorage {
       categoryId: food.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Macarrão Espaguete 500g",
       description: "Macarrão espaguete tradicional",
@@ -266,7 +266,7 @@ export class MemStorage implements IStorage {
       categoryId: food.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Molho de Tomate 340g",
       description: "Molho de tomate tradicional",
@@ -275,7 +275,7 @@ export class MemStorage implements IStorage {
       categoryId: food.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Azeite Extra Virgem 500ml",
       description: "Azeite de oliva extra virgem importado",
@@ -284,7 +284,7 @@ export class MemStorage implements IStorage {
       categoryId: food.id,
       inStock: true
     });
-    
+
     // Padaria
     this.createProduct({
       name: "Pão Francês 1kg",
@@ -294,7 +294,7 @@ export class MemStorage implements IStorage {
       categoryId: bakery.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Bolo de Chocolate Fatia",
       description: "Fatia de bolo de chocolate caseiro",
@@ -303,7 +303,7 @@ export class MemStorage implements IStorage {
       categoryId: bakery.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Pão de Queijo 6 unid",
       description: "Pão de queijo mineiro tradicional",
@@ -312,7 +312,7 @@ export class MemStorage implements IStorage {
       categoryId: bakery.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Sonho Recheado",
       description: "Sonho recheado com creme",
@@ -321,7 +321,7 @@ export class MemStorage implements IStorage {
       categoryId: bakery.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Croissant",
       description: "Croissant francês folhado",
@@ -330,7 +330,7 @@ export class MemStorage implements IStorage {
       categoryId: bakery.id,
       inStock: true
     });
-    
+
     // Diversos
     this.createProduct({
       name: "Pilhas AA (4 unidades)",
@@ -340,7 +340,7 @@ export class MemStorage implements IStorage {
       categoryId: misc.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Papel Alumínio 30m",
       description: "Rolo de papel alumínio 30 metros",
@@ -349,7 +349,7 @@ export class MemStorage implements IStorage {
       categoryId: misc.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Filtro de Café 103 (30 unid)",
       description: "Caixa com 30 filtros de papel para café",
@@ -358,7 +358,7 @@ export class MemStorage implements IStorage {
       categoryId: misc.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Carregador Portátil USB",
       description: "Carregador de celular com 2 entradas USB",
@@ -367,7 +367,7 @@ export class MemStorage implements IStorage {
       categoryId: misc.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Caderno Universitário 100 fls",
       description: "Caderno com espiral e capa dura",
@@ -376,7 +376,7 @@ export class MemStorage implements IStorage {
       categoryId: misc.id,
       inStock: true
     });
-    
+
     this.createProduct({
       name: "Guarda-Chuva Dobrável",
       description: "Guarda-chuva compacto e automático",
@@ -385,7 +385,7 @@ export class MemStorage implements IStorage {
       categoryId: misc.id,
       inStock: true
     });
-    
+
     // Seed a cash transaction for opening balance
     this.createCashTransaction({
       amount: 100,
@@ -393,7 +393,7 @@ export class MemStorage implements IStorage {
       notes: "Abertura de caixa inicial",
       operatorId: 2,
     });
-    
+
     // Seed some sales
     const saleItems = [
       {
@@ -411,7 +411,7 @@ export class MemStorage implements IStorage {
         imageUrl: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300"
       }
     ];
-    
+
     this.createSale({
       total: 9.00,
       paymentMethod: "Dinheiro",
@@ -420,7 +420,7 @@ export class MemStorage implements IStorage {
       operatorId: 2,
       items: saleItems,
     });
-    
+
     // Add another sale with credit card
     this.createSale({
       total: 23.50,
@@ -450,7 +450,7 @@ export class MemStorage implements IStorage {
         }
       ],
     });
-    
+
     // Add a PIX sale
     this.createSale({
       total: 42.80,
@@ -492,16 +492,16 @@ export class MemStorage implements IStorage {
     this.users.set(id, user);
     return user;
   }
-  
+
   // Category operations
   async getCategories(): Promise<Category[]> {
     return Array.from(this.categories.values());
   }
-  
+
   async getCategory(id: number): Promise<Category | undefined> {
     return this.categories.get(id);
   }
-  
+
   async createCategory(category: InsertCategory): Promise<Category> {
     const id = this.currentCategoryId++;
     const newCategory: Category = { ...category, id };
@@ -509,27 +509,27 @@ export class MemStorage implements IStorage {
     console.log(`Categoria criada: ${newCategory.name}, ID: ${id}`);
     return newCategory;
   }
-  
+
   // Product operations
   async getProducts(): Promise<Product[]> {
     return Array.from(this.products.values());
   }
-  
+
   async getProductsByCategory(categoryId: number): Promise<Product[]> {
     return Array.from(this.products.values()).filter(
       (product) => product.categoryId === categoryId
     );
   }
-  
+
   async getProduct(id: number): Promise<Product | undefined> {
     return this.products.get(id);
   }
-  
+
   async createProduct(product: InsertProduct): Promise<Product> {
     const id = this.currentProductId++;
     const price = typeof product.price === 'number' ? product.price.toString() : product.price;
-    const newProduct: Product = { 
-      ...product, 
+    const newProduct: Product = {
+      ...product,
       id,
       price,
       description: product.description || null,
@@ -540,12 +540,12 @@ export class MemStorage implements IStorage {
     console.log(`Produto criado: ${newProduct.name}, categoria: ${newProduct.categoryId}`);
     return newProduct;
   }
-  
+
   // Sale operations
   async getSales(): Promise<Sale[]> {
     return Array.from(this.sales.values());
   }
-  
+
   async getSalesByDateRange(startDate: Date, endDate: Date): Promise<Sale[]> {
     return Array.from(this.sales.values()).filter(
       (sale) => {
@@ -554,27 +554,27 @@ export class MemStorage implements IStorage {
       }
     );
   }
-  
+
   async getSale(id: number): Promise<Sale | undefined> {
     return this.sales.get(id);
   }
-  
+
   async createSale(sale: InsertSale): Promise<Sale> {
     const id = this.currentSaleId++;
-    const newSale: Sale = { 
-      ...sale, 
-      id, 
-      createdAt: new Date() 
+    const newSale: Sale = {
+      ...sale,
+      id,
+      createdAt: new Date()
     };
     this.sales.set(id, newSale);
     return newSale;
   }
-  
+
   // Cash transaction operations
   async getCashTransactions(): Promise<CashTransaction[]> {
     return Array.from(this.cashTransactions.values());
   }
-  
+
   async getCashTransactionsByDateRange(startDate: Date, endDate: Date): Promise<CashTransaction[]> {
     return Array.from(this.cashTransactions.values()).filter(
       (transaction) => {
@@ -583,23 +583,23 @@ export class MemStorage implements IStorage {
       }
     );
   }
-  
+
   async createCashTransaction(transaction: InsertCashTransaction): Promise<CashTransaction> {
     const id = this.currentCashTransactionId++;
-    const newTransaction: CashTransaction = { 
-      ...transaction, 
-      id, 
-      createdAt: new Date() 
+    const newTransaction: CashTransaction = {
+      ...transaction,
+      id,
+      createdAt: new Date()
     };
     this.cashTransactions.set(id, newTransaction);
     return newTransaction;
   }
-  
+
   // Daily register operations
   async getDailyRegisters(): Promise<DailyRegister[]> {
     return Array.from(this.dailyRegisters.values());
   }
-  
+
   async getDailyRegistersByDateRange(startDate: Date, endDate: Date): Promise<DailyRegister[]> {
     return Array.from(this.dailyRegisters.values()).filter(
       (register) => {
@@ -608,60 +608,60 @@ export class MemStorage implements IStorage {
       }
     );
   }
-  
+
   async createDailyRegister(register: InsertDailyRegister): Promise<DailyRegister> {
     const id = this.currentDailyRegisterId++;
-    const newRegister: DailyRegister = { 
-      ...register, 
-      id, 
-      closedAt: new Date() 
+    const newRegister: DailyRegister = {
+      ...register,
+      id,
+      closedAt: new Date()
     };
     this.dailyRegisters.set(id, newRegister);
     return newRegister;
   }
-  
+
   async getCurrentSystemBalance(): Promise<number> {
     // Calculate from all cash transactions and cash sales
     let balance = 0;
-    
+
     // Add all cash transactions
     Array.from(this.cashTransactions.values()).forEach(
       (transaction) => {
         balance += Number(transaction.amount);
       }
     );
-    
+
     // Add cash sales
     Array.from(this.sales.values())
       .filter(sale => sale.paymentMethod === "Dinheiro")
       .forEach(sale => {
         balance += Number(sale.total);
       });
-    
+
     return balance;
   }
-  
+
   async getCashSalesTotal(): Promise<number> {
     // Sum up all cash sales
     return Array.from(this.sales.values())
       .filter(sale => sale.paymentMethod === "Dinheiro")
       .reduce((total, sale) => total + Number(sale.total), 0);
   }
-  
+
   async getCardSalesTotal(): Promise<number> {
     // Sum up all card sales (credit and debit)
     return Array.from(this.sales.values())
       .filter(sale => sale.paymentMethod === "Cartão de Crédito" || sale.paymentMethod === "Cartão de Débito")
       .reduce((total, sale) => total + Number(sale.total), 0);
   }
-  
+
   async getPixSalesTotal(): Promise<number> {
     // Sum up all PIX sales
     return Array.from(this.sales.values())
       .filter(sale => sale.paymentMethod === "PIX")
       .reduce((total, sale) => total + Number(sale.total), 0);
   }
-  
+
   async getSalesCount(): Promise<number> {
     return this.sales.size;
   }

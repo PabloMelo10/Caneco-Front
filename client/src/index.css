@@ -13,17 +13,24 @@
   --card-foreground: 20 14.3% 4.1%;
   --border: 20 5.9% 90%;
   --input: 20 5.9% 90%;
-  --primary: 202 100% 37%; /* CANECO Azul escuro #0075BA */
-  --primary-light: 202 100% 50%; /* CANECO Azul claro #00A0FB */
+  --primary: 188 94% 41%;
+  /* CANECO Azul escuro #0075BA */
+  --primary-light: 202 100% 50%;
+  /* CANECO Azul claro #00A0FB */
   --primary-foreground: 0 0% 100%;
-  --secondary: 219 34% 95%; /* Cinza muito claro para backgrounds */
-  --secondary-foreground: 217 19% 27%; /* Cinza escuro para texto */
-  --accent: 209 100% 59%; /* Azul médio #2B86F9 */
+  --secondary: 219 34% 95%;
+  /* Cinza muito claro para backgrounds */
+  --secondary-foreground: 217 19% 27%;
+  /* Cinza escuro para texto */
+  --accent: 209 100% 59%;
+  /* Azul médio #2B86F9 */
   --accent-foreground: 0 0% 100%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 60 9.1% 97.8%;
-  --success: 142 71% 45%; /* Verde #24C661 */
-  --warning: 34 100% 50%; /* Laranja #FF9500 */
+  --success: 142 71% 45%;
+  /* Verde #24C661 */
+  --warning: 34 100% 50%;
+  /* Laranja #FF9500 */
   --ring: 201 100% 37%;
   --radius: 0.5rem;
   --chart-1: 202 100% 37%;
@@ -34,7 +41,8 @@
 }
 
 .dark {
-  --background: 217 19% 19%; /* #22262F - escuro */
+  --background: 217 19% 19%;
+  /* #22262F - escuro */
   --foreground: 0 0% 98%;
   --muted: 240 3.7% 15.9%;
   --muted-foreground: 240 5% 64.9%;
@@ -44,17 +52,22 @@
   --card-foreground: 0 0% 98%;
   --border: 217 19% 27%;
   --input: 217 19% 27%;
-  --primary: 202 100% 37%; /* CANECO Azul escuro #0075BA */
-  --primary-light: 202 100% 50%; /* CANECO Azul claro #00A0FB */
+  --primary: 202 100% 37%;
+  /* CANECO Azul escuro #0075BA */
+  --primary-light: 202 100% 50%;
+  /* CANECO Azul claro #00A0FB */
   --primary-foreground: 0 0% 100%;
   --secondary: 217 19% 27%;
   --secondary-foreground: 0 0% 98%;
-  --accent: 209 100% 59%; /* Azul médio #2B86F9 */
+  --accent: 209 100% 59%;
+  /* Azul médio #2B86F9 */
   --accent-foreground: 0 0% 100%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-  --success: 142 71% 45%; /* Verde #24C661 */
-  --warning: 34 100% 50%; /* Laranja #FF9500 */
+  --success: 142 71% 45%;
+  /* Verde #24C661 */
+  --warning: 34 100% 50%;
+  /* Laranja #FF9500 */
   --ring: 0 0% 83.9%;
   --radius: 0.5rem;
 }
@@ -73,11 +86,11 @@
   .menu-card {
     @apply bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden cursor-pointer hover:scale-105;
   }
-  
+
   .category-card {
     @apply bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden cursor-pointer hover:bg-secondary;
   }
-  
+
   .product-card {
     @apply bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden hover:ring-2 hover:ring-primary/30;
   }
@@ -105,7 +118,7 @@
   .app-title {
     @apply font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent;
   }
-  
+
   /* Ocultar textos em inglês */
   input::placeholder {
     @apply opacity-0;
